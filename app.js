@@ -1,35 +1,41 @@
-const express = require('express')
-const path = require('path')
-const { Socket } = require('socket.io')
-const app = express()
-const PORT = process.env.PORT || 4000
-const server = app.listen(PORT, () => console.log(`server on PORT${PORT}`))
+const express = require('express');
+const path = require('path');
+const { Socket } = require('socket.io');
+const app = express();
+const PORT = process.env.PORT || 4000;
 
-const io = require('socket.io')(server)
 
-app.use(express.static(path.join(__dirname, 'public')))
+const server = app.listen(PORT, () => console.log(`server on PORT ${PORT}`));
 
-let socketsConected = new Set()
-io.on('connection', onconnected)
+const io = require('socket.io')(server);
 
-    function onconnected(socket) {
-        console.log(socket.id)
-        socketsConected.add(Socket.id)
-       io.emit('client-total', socketsConected.size)
+app.use(express.static(path.join(__dirname, 'public')));
 
-    socket.on('disconncet',  () => {
-            console.log('socket disconnected', socket.id)
-             socketsConected.delete(Socket.id)
-             io.emit('client-total', socketsConected.size)
-        })
+let socketsConnected = new Set();
 
-        socket.on('message', (data) =>  {
-            //console.log(data)
-            socket.broadcast.emit('chat-message', data)
-     })
+io.on('connection', onConnected);
 
-     socket.on('feedback', (data) => {
-        socket.broadcast.emit('feedback', data)
-     })
-    }
-    
+function onConnected(socket) {
+    console.log(socket.id);
+    socketsConnected.add(socket.id);
+
+   
+io.emit('clients-total', socketsConnected.size);
+
+
+socket.on('disconnect', () => {
+    console.log('socket disconnected', socket.id);
+    socketsConnected.delete(socket.id);
+    io.emit('clients-total', socketsConnected.size);
+});
+
+
+    socket.on('message', (data) => {
+        
+        socket.broadcast.emit('chat-message', data);
+    });
+
+    socket.on('feedback', (data) => {
+        socket.broadcast.emit('feedback', data);
+    });
+}

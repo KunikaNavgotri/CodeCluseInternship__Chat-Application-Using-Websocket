@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link 
-    rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
-    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" 
-    />
+  rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+  integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+  crossorigin="anonymous" referrerpolicy="no-referrer" 
+/>
+
     <link rel="stylesheet" href="style.css">
     <title>Chat app</title>
 </head>
@@ -51,16 +52,18 @@
 <input type="text" name="message" id="message-input" class="message-input">
 <div class="v-divider"></div>
 <button type="submit" class="send button">
-send <span><i class="fas fa-paper-plan"></i></span>
+  send <span><i class="fas fa-paper-plane"></i></span>
 </button>
+
 </form>
 
 </div>
 <h3 class="clients-total" id="client-total">Total client: 2</h3>
 
-<script src ="/socket.io/socket.io.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="main.js"></Script>
+<script src="main.js"></script>
 
 
 
